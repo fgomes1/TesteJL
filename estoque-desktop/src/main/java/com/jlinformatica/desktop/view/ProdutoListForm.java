@@ -51,16 +51,20 @@ public class ProdutoListForm extends JFrame {
         return editarButton;
     }
 
-    public int getProdutoSelecionado() {
+    public Long getProdutoSelecionado() {
         int selectedRow = produtoTable.getSelectedRow();
         if (selectedRow >= 0) {
             Object value = produtoTable.getValueAt(selectedRow, 0);
-
-            if (value instanceof Integer) {
-                return (Integer) value;
+            if (value instanceof Long) {
+                return (Long) value;
+            } else if (value instanceof Integer) {
+                // Converte de Integer para Long
+                return Long.valueOf((Integer) value);
             }
         }
-        return -1;
+        return null; // Indica que nada foi selecionado
     }
+
+
 
 }

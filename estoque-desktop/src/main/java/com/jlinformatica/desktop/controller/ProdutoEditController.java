@@ -19,31 +19,38 @@ public class ProdutoEditController {
         this.form = form;
         this.service = service;
         this.produto = produto;
-        initController();  // Inicializa o controlador
+        initController();
     }
 
     private void initController() {
+        // Adiciona o listener ao botão "Salvar"
         form.getSalvarButton().addActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent e) {
-                salvarProduto();  // Chama o método salvarProduto quando o botão "Salvar" é clicado
+                salvarProduto();
             }
         });
     }
 
     private void salvarProduto() {
+        System.out.println("Salvando produto editado...");
         try {
+            // Atualiza os campos do produto com os valores do formulário
             produto.setNome(form.getNome());
             produto.setDescricao(form.getDescricao());
             produto.setPreco(new BigDecimal(form.getPreco()));
             produto.setQuantidade(Integer.parseInt(form.getQuantidade()));
 
-            service.salvar(produto);  // Atualiza o produto
+            // Persiste as alterações no banco
+            service.salvar(produto);
 
+            // Mensagem de sucesso
             JOptionPane.showMessageDialog(form, "Produto editado com sucesso!");
-            form.dispose();  // Fecha a tela de edição
+            form.dispose(); // Fecha a tela de edição
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(form, "Erro ao editar produto: " + ex.getMessage());
+            JOptionPane.showMessageDialog(form, "Erro ao salvar produto: " + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 }

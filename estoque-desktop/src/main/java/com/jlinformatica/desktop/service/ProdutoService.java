@@ -20,7 +20,9 @@ public class ProdutoService {
             } else {
                 em.merge(produto);
             }
+            System.out.println("Commitando transação...");
             em.getTransaction().commit();
+            System.out.println("Transação commitada com sucesso!");
         } finally {
             em.close();
             emf.close();
@@ -39,4 +41,17 @@ public class ProdutoService {
             emf.close();
         }
     }
+
+    public Produto buscarProdutoPorId(Long id) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.find(Produto.class, id);
+        } finally {
+            em.close();
+            emf.close();
+        }
+    }
+
+
 }

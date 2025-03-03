@@ -2,8 +2,12 @@ package com.jlinformatica.desktop.controller;
 
 import com.jlinformatica.desktop.view.ProdutoListForm;
 import com.jlinformatica.desktop.service.ProdutoService;
+import com.jlinformatica.desktop.view.ProdutoEditForm;
 import com.jlinformatica.domain.model.Produto;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 public class ProdutoListController {
@@ -14,6 +18,15 @@ public class ProdutoListController {
     public ProdutoListController(ProdutoListForm listForm, ProdutoService service) {
         this.listForm = listForm;
         this.service = service;
+        initController(); // Inicializa o listener do botão "Editar"
+    }
+
+    private void initController() {
+        listForm.getEditarButton().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                editarProduto();
+            }
+        });
     }
 
     public void listarProdutos() {
@@ -22,4 +35,23 @@ public class ProdutoListController {
     }
 
 
+    private void editarProduto() {
+        Long produtoId = listForm.getProdutoSelecionado();
+        if (produtoId != null) {
+            Produto produto = service.buscarProdutoPorId(produtoId);
+            if (produto != null) {
+                ProdutoEditForm editForm = new ProdutoEditForm(produto);
+                // Instancia o controller de edição, se estiver usando:
+                // new ProdutoEditController(editForm, service, produto);
+                editForm.setLocationRelativeTo(null);
+                editForm.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(listForm, "Produto não encontrado.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(listForm, "Selecione um produto para editar.");
+        }
+    }
 }
+
+
