@@ -23,9 +23,7 @@ public class ProdutoEditController {
     }
 
     private void initController() {
-        // Adiciona o listener ao botão "Salvar"
         form.getSalvarButton().addActionListener(new ActionListener() {
-
             public void actionPerformed(ActionEvent e) {
                 salvarProduto();
             }
