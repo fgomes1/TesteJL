@@ -1,15 +1,16 @@
 package com.jlinformatica.desktop.view;
 
-import javax.swing.*;
-import java.awt.*;
-import javax.swing.table.DefaultTableModel;
 import com.jlinformatica.domain.model.Produto;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.util.List;
 
 public class ProdutoListForm extends JFrame {
 
     private JTable produtoTable;
     private JButton editarButton;
+    private JButton voltarButton;
     private DefaultTableModel tableModel;
 
     public ProdutoListForm() {
@@ -23,13 +24,25 @@ public class ProdutoListForm extends JFrame {
         tableModel = new DefaultTableModel(new Object[]{"ID", "Nome", "Preço", "Quantidade"}, 0);
         produtoTable = new JTable(tableModel);
 
+
         editarButton = new JButton("Editar");
+        voltarButton = new JButton("Voltar");
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+
+        editarButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        voltarButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        buttonPanel.add(editarButton);
+        buttonPanel.add(Box.createVerticalStrut(10));
+        buttonPanel.add(voltarButton);
 
         JScrollPane scrollPane = new JScrollPane(produtoTable);
 
         setLayout(new BorderLayout());
         add(scrollPane, BorderLayout.CENTER);
-        add(editarButton, BorderLayout.SOUTH);
+        add(buttonPanel, BorderLayout.SOUTH);
     }
 
     public void carregarProdutos(List<Produto> produtos) {
@@ -52,6 +65,11 @@ public class ProdutoListForm extends JFrame {
         return editarButton;
     }
 
+    public JButton getVoltarButton() {
+        return voltarButton;
+    }
+
+
     public Long getProdutoSelecionado() {
         int selectedRow = produtoTable.getSelectedRow();
         if (selectedRow >= 0) {
@@ -64,7 +82,4 @@ public class ProdutoListForm extends JFrame {
         }
         return null;
     }
-
-
-
 }

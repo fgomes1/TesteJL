@@ -1,5 +1,6 @@
 package com.jlinformatica.desktop.controller;
 
+import com.jlinformatica.desktop.view.ProdutoForm;
 import com.jlinformatica.desktop.view.ProdutoListForm;
 import com.jlinformatica.desktop.service.ProdutoService;
 import com.jlinformatica.desktop.view.ProdutoEditForm;
@@ -18,13 +19,24 @@ public class ProdutoListController {
     public ProdutoListController(ProdutoListForm listForm, ProdutoService service) {
         this.listForm = listForm;
         this.service = service;
-        initController(); // Inicializa o listener do botão "Editar"
+        initController();
     }
 
     private void initController() {
         listForm.getEditarButton().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 editarProduto();
+            }
+        });
+
+        listForm.getVoltarButton().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                listForm.dispose();
+
+                ProdutoForm formCriacao = new ProdutoForm();
+                formCriacao.setLocationRelativeTo(null);
+                formCriacao.setVisible(true);
+
             }
         });
     }
