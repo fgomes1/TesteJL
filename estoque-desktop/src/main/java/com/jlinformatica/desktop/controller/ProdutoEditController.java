@@ -1,9 +1,9 @@
 package com.jlinformatica.desktop.controller;
 
 import com.jlinformatica.desktop.view.ProdutoEditForm;
+import com.jlinformatica.desktop.view.ProdutoListForm;
 import com.jlinformatica.desktop.service.ProdutoService;
 import com.jlinformatica.domain.model.Produto;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
@@ -14,11 +14,13 @@ public class ProdutoEditController {
     private ProdutoEditForm form;
     private ProdutoService service;
     private Produto produto;
+    private ProdutoListForm listForm;
 
-    public ProdutoEditController(ProdutoEditForm form, ProdutoService service, Produto produto) {
+    public ProdutoEditController(ProdutoEditForm form, ProdutoService service, Produto produto, ProdutoListForm listForm) {
         this.form = form;
         this.service = service;
         this.produto = produto;
+        this.listForm = listForm;
         initController();
     }
 
@@ -33,22 +35,21 @@ public class ProdutoEditController {
     private void salvarProduto() {
         System.out.println("Salvando produto editado...");
         try {
-            // Atualiza os campos do produto com os valores do formulário
             produto.setNome(form.getNome());
             produto.setDescricao(form.getDescricao());
             produto.setPreco(new BigDecimal(form.getPreco()));
             produto.setQuantidade(Integer.parseInt(form.getQuantidade()));
 
-            // Persiste as alterações no banco
             service.salvar(produto);
 
-            // Mensagem de sucesso
             JOptionPane.showMessageDialog(form, "Produto editado com sucesso!");
-            form.dispose(); // Fecha a tela de edição
 
+            listForm.carregarProdutos(service.listarProdutos());
+
+            form.dispose();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(form, "Erro ao salvar produto: " + ex.getMessage());
             ex.printStackTrace();
+            JOptionPane.showMessageDialog(form, "Erro ao salvar produto: " + ex.getMessage());
         }
     }
 }

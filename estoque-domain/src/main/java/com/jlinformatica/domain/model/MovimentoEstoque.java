@@ -25,5 +25,5 @@ public class MovimentoEstoque {
     @JoinColumn(name = "produto_id")
     private Produto produto;
 
-    // Getters e Setters
+
 }

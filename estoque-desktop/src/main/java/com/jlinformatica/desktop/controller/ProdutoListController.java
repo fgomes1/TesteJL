@@ -40,12 +40,8 @@ public class ProdutoListController {
         if (produtoId != null) {
             Produto produto = service.buscarProdutoPorId(produtoId);
             if (produto != null) {
-                // Cria a tela de edição
                 ProdutoEditForm editForm = new ProdutoEditForm(produto);
-
-                // **Instancia o controller**, registrando o listener no botão "Salvar"
-                new ProdutoEditController(editForm, service, produto);
-
+                new ProdutoEditController(editForm, service, produto, listForm);
                 editForm.setLocationRelativeTo(null);
                 editForm.setVisible(true);
             } else {
@@ -55,6 +51,7 @@ public class ProdutoListController {
             JOptionPane.showMessageDialog(listForm, "Selecione um produto para editar.");
         }
     }
+
 
 }
 

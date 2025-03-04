@@ -33,6 +33,7 @@ public class ProdutoListForm extends JFrame {
     }
 
     public void carregarProdutos(List<Produto> produtos) {
+        tableModel.setRowCount(0);
         for (Produto produto : produtos) {
             tableModel.addRow(new Object[]{
                     produto.getId(),
@@ -58,11 +59,10 @@ public class ProdutoListForm extends JFrame {
             if (value instanceof Long) {
                 return (Long) value;
             } else if (value instanceof Integer) {
-                // Converte de Integer para Long
                 return Long.valueOf((Integer) value);
             }
         }
-        return null; // Indica que nada foi selecionado
+        return null;
     }
 
 

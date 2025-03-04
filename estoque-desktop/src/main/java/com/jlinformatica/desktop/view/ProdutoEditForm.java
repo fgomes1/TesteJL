@@ -18,9 +18,9 @@ public class ProdutoEditForm extends JFrame {
         this.produto = produto;
         setTitle("Editar Produto");
         setSize(400, 300);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);  // Fecha apenas a tela de edição
-        initComponents();  // Inicializa os componentes
-        carregarProduto();  // Preenche os campos com os dados do produto
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        initComponents();
+        carregarProduto();
     }
 
     private void initComponents() {
@@ -73,7 +73,6 @@ public class ProdutoEditForm extends JFrame {
         quantidadeField.setText(String.valueOf(produto.getQuantidade()));
     }
 
-    // Métodos getters
     public JButton getSalvarButton() {
         return salvarButton;
     }

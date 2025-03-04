@@ -5,23 +5,21 @@ import java.awt.*;
 
 public class ProdutoForm extends JFrame {
 
-    // Declaração dos componentes
     private JTextField nomeField;
     private JTextArea descricaoArea;
     private JTextField precoField;
     private JTextField quantidadeField;
     private JButton salvarButton;
-    private JButton verListaButton;  // Novo botão para abrir a lista de produtos
+    private JButton verListaButton;
 
     public ProdutoForm() {
         setTitle("Cadastro de Produto");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        initComponents();  // Método para inicializar os componentes
+        initComponents();
     }
 
     private void initComponents() {
-        // Inicializa os componentes
         nomeField = new JTextField(20);
         descricaoArea = new JTextArea(5, 20);
         precoField = new JTextField(10);
@@ -29,7 +27,6 @@ public class ProdutoForm extends JFrame {
         salvarButton = new JButton("Salvar");
         verListaButton = new JButton("Ver Lista de Produtos");  // Inicializa o novo botão
 
-        // Define o layout
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
