@@ -3,7 +3,6 @@ package com.jlinformatica.desktop.view;
 import com.jlinformatica.domain.model.Produto;
 import javax.swing.*;
 import java.awt.*;
-import java.math.BigDecimal;
 
 public class ProdutoEditForm extends JFrame {
 

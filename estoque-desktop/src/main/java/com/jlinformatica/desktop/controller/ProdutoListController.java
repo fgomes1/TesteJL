@@ -34,12 +34,13 @@ public class ProdutoListController {
                 listForm.dispose();
 
                 ProdutoForm formCriacao = new ProdutoForm();
+                new ProdutoFormController(formCriacao, service);
                 formCriacao.setLocationRelativeTo(null);
                 formCriacao.setVisible(true);
-
             }
         });
     }
+
 
     public void listarProdutos() {
         List<Produto> produtos = service.listarProdutos();
