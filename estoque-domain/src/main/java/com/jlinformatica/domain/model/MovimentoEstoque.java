@@ -25,5 +25,44 @@ public class MovimentoEstoque {
     @JoinColumn(name = "produto_id")
     private Produto produto;
 
+    // Getters e Setters
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getDataMovimento() {
+        return dataMovimento;
+    }
+
+    public void setDataMovimento(LocalDateTime dataMovimento) {
+        this.dataMovimento = dataMovimento;
+    }
+
+    public TipoMovimento getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoMovimento tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
 }

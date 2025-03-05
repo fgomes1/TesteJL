@@ -11,10 +11,11 @@ public class ProdutoForm extends JFrame {
     private JTextField quantidadeField;
     private JButton salvarButton;
     private JButton verListaButton;
+    private JButton movimentarEstoqueButton;
 
     public ProdutoForm() {
         setTitle("Cadastro de Produto");
-        setSize(400, 300);
+        setSize(500, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initComponents();
     }
@@ -25,7 +26,8 @@ public class ProdutoForm extends JFrame {
         precoField = new JTextField(10);
         quantidadeField = new JTextField(5);
         salvarButton = new JButton("Salvar");
-        verListaButton = new JButton("Ver Lista de Produtos");  // Inicializa o novo botão
+        verListaButton = new JButton("Ver Lista de Produtos");
+        movimentarEstoqueButton = new JButton("Estoque");
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -66,10 +68,19 @@ public class ProdutoForm extends JFrame {
         gbc.gridy = 5;
         gbc.gridwidth = 2;
         add(verListaButton, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        gbc.gridwidth = 2;
+        add(movimentarEstoqueButton, gbc);
     }
 
     public JButton getSalvarButton() {
         return salvarButton;
+    }
+
+    public JButton getMovimentarEstoqueButton() {
+        return movimentarEstoqueButton;
     }
 
     public JButton getVerListaButton() {

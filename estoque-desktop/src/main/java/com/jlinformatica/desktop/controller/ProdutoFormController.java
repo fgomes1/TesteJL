@@ -1,10 +1,15 @@
 package com.jlinformatica.desktop.controller;
 
 import com.jlinformatica.desktop.view.ProdutoForm;
+import com.jlinformatica.desktop.view.MovimentoEstoqueForm;
+
+
 import com.jlinformatica.desktop.view.ProdutoListForm;
 import com.jlinformatica.desktop.service.ProdutoService;
+import com.jlinformatica.desktop.service.MovimentoEstoqueService;
 import com.jlinformatica.domain.model.Produto;
 import java.math.BigDecimal;
+import java.util.List;
 
 
 
@@ -35,6 +40,25 @@ public class ProdutoFormController {
                 abrirListaDeProdutos();
             }
         });
+
+        form.getMovimentarEstoqueButton().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Botão Estoque clicado.");
+                abrirMovimentacaoEstoque();
+            }
+        });
+
+    }
+
+    private void abrirMovimentacaoEstoque() {
+        List<Produto> produtos = service.listarProdutos();
+        MovimentoEstoqueForm movimentoForm = new MovimentoEstoqueForm(produtos);
+        MovimentoEstoqueService movimentoService = new MovimentoEstoqueService();
+        ProdutoService produtoService = new ProdutoService();
+        new MovimentoEstoqueController(movimentoForm, movimentoService, produtoService);
+
+        movimentoForm.setLocationRelativeTo(form);
+        movimentoForm.setVisible(true);
     }
 
     private void salvarProduto() {
