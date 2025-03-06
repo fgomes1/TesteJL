@@ -11,10 +11,8 @@
 
     <!-- Aqui você adicionará os módulos -->
     <modules>
-        <module>estoque-desktop</module>
-        <module>estoque-web</module>
-        <module>estoque-desktop</module>
-        <module>estoque-web</module>
         <module>estoque-domain</module>
+        <module>estoque-desktop</module>
+        <module>estoque-web</module>
     </modules>
 </project>

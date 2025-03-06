@@ -42,6 +42,32 @@ public class ProdutoService {
         }
     }
 
+    public List<Produto> buscarProdutoPorDescricao(String descricao) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery("SELECT p FROM Produto p WHERE LOWER(p.descricao) LIKE :desc", Produto.class)
+                    .setParameter("desc", "%" + descricao.toLowerCase() + "%")
+                    .getResultList();
+        } finally {
+            em.close();
+            emf.close();
+        }
+    }
+
+    public List<Produto> listarProdutosBaixoEstoque() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery("SELECT p FROM Produto p WHERE p.quantidade < :min", Produto.class)
+                    .setParameter("min", 10)
+                    .getResultList();
+        } finally {
+            em.close();
+            emf.close();
+        }
+    }
+
     public Produto buscarProdutoPorId(Long id) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
         EntityManager em = emf.createEntityManager();
